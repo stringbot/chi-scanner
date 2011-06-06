@@ -10,9 +10,8 @@ The sketch should run fine without SuperCollider but the noise generator is
 included at the bottom of chi-scanner.rb. Copy and paste this synthdef into 
 SuperCollider:
 
-```SynthDef(\noiz, { |amp = 100|
-  var noise = BrownNoise.ar(amp/100.00);
-  Out.ar(0, noise ! 2);
-}).store;
-```
+    SynthDef(\noiz, { |amp = 100|
+      var noise = BrownNoise.ar(amp/100.00);
+      Out.ar(0, noise ! 2);
+    }).store;
 
