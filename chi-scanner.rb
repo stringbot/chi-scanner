@@ -5,6 +5,7 @@ class ChiScanner < Processing::App
   import 'supercollider'
   import 'oscP5'
 
+  load_libraries :video
   import 'processing.video'
 
   trap 'INT' do
@@ -61,6 +62,8 @@ class ChiScanner < Processing::App
 
     # pre calculate average pixel values
     @nvals = calc_noiz_values(@image)
+
+    @movie = MovieMaker.new($app, 640, 440, "chiscan.mov", 60, MovieMaker.ANIMATION, MovieMaker.HIGH);
   end
 
   def stop
@@ -72,6 +75,8 @@ class ChiScanner < Processing::App
     vwidth = 5
     @index = @index + vwidth
     @index = 0 if @index > @image.width - vwidth
+    @movie.finish if @index > @image.width - vwidth
+
 
     # todo: fix magic numbers
     @viewport = @image.get(@index,220,vwidth+1,440)
@@ -83,6 +88,7 @@ class ChiScanner < Processing::App
     set_noiz_amp avg - 50
     fill color(avg)
     rect 0, 0, 25, 25
+    @movie.add_frame
   end
 
 end
