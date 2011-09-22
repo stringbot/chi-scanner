@@ -63,7 +63,7 @@ class ChiScanner < Processing::App
     # pre calculate average pixel values
     @nvals = calc_noiz_values(@image)
 
-    @movie = MovieMaker.new($app, 640, 440, "chiscan.mov", 60, MovieMaker.ANIMATION, MovieMaker.HIGH);
+    @movie = MovieMaker.new($app, 640, 440, "chiscan.mov", 60, MovieMaker.JPEG, MovieMaker.BEST);
   end
 
   def stop
